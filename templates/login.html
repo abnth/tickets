@@ -1,0 +1,110 @@
+<!DOCTYPE html>	
+{% load staticfiles %}
+<meta name="Register Page" author="darkdefender27" />
+<HTML>
+<HEAD>
+	<TITLE>
+		Registration Page
+	</TITLE>
+	
+		<link rel="stylesheet" href="{% static 'css/custom.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+		
+		<script src="{% static 'js/jquery.min.js' %}"></script>
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'js/bootstrap.validator.js' %}"></script>
+		
+		
+		<style>
+		
+		form .alert {
+			display : none;
+		}	
+		
+		.light-wrap {
+			border: 1px solid rgb(194, 199, 208);
+		}
+		
+		
+		</style>
+		
+		<script type="text/javascript">
+			function validate()
+			{
+				if(login_form.tab_id.value>100)
+				{
+				   document.getElementById('tab_error').innerHTML="Invalid Tablet-id.";
+				   document.login_form.tab_id="";
+				   document.login_form.tab_id.focus();
+				}
+			}
+		</script>
+
+</HEAD>
+
+<BODY>
+	
+	<!-- NAVBAR HEADER -->
+	
+	
+	
+	<!-- NAVBAR HEADER COMPLETES HERE -->
+	
+	<!-- REGISTER -->
+	
+	{% block body_block %}
+	<div class="container" align="center">
+	
+		<div class="page-header">
+		  <img src = "{% static 'images/aakash.png' %}" height="50px" width="100px" />
+		  <h1><small>Log In to </small><strong>TechSupport</strong></h1>
+		</div>
+		
+	<div class="col-md-4 col-md-offset-4">
+	<ul class="nav nav-tabs nav-justified">
+		<li><a href="/register/">Register</a></li>
+		<li class="active"><a href="/login/">Login</a></li>
+	
+	</ul>
+
+	<div class="well light-wrap">
+		<br />
+		<br />
+		
+		<form role="form" name="login_form" method="post">
+		{% csrf_token %}
+		<i class="fa fa-user fa-5x"></i>			
+		
+				<div class="form-group">
+					<div class="input-group">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+						<input type="text" class="form-control" name ="username" placeholder="Username" required="required" data-title="Please use a valid email-id" data-require="" data-regex="email"/>
+				  	</div>
+				</div>
+
+	   			<div class="input-group">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+					<input type="password" class="form-control" name="password" placeholder="Password" required="required" />
+			  	</div>
+			  	<br/>
+			  	
+				<div class="alert alert-danger">		
+				</div>
+			    
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+
+				<br />		
+		  </form>
+		</div>	<!-- light-wrap -->
+	</div>
+	</div> <!-- /container -->
+	{% endblock body_block %}
+
+
+	<!-- REGISTER COMPLETES HERE -->
+	
+</BODY>
+
+</HTML>

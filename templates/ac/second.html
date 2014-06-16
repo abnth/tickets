@@ -1,0 +1,303 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <title>Ticket {{threads.ticket_id}}</title>
+    <!--[if IE]>
+    <style type="text/css">
+        .tip_shadow { display:block !important; }
+    </style>
+    <![endif]-->
+    <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui-1.8.18.custom.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.multifile.js"></script>
+    <script type="text/javascript" src="./js/tips.js"></script>
+    <script type="text/javascript" src="./js/nicEdit.js"></script>
+    <script type="text/javascript" src="./js/bootstrap-typeahead.js"></script>
+    <script type="text/javascript" src="./js/scp.js"></script>
+    <link rel="stylesheet" href="/static/css/scp.css" media="screen">
+    <link rel="stylesheet" href="/static/css/typeahead.css" media="screen">
+    <link type="text/css" href="static/css/custom.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="/static/css/min.css">
+    <link type="text/css" rel="stylesheet" href="static/css/dropdown.css">
+<script type="text/javascript">
+
+function addTxtBx(){
+var txtBxHolder = document.getElementById('txtBoxHolder');
+var newTxtBx = document.createElement('input');
+newTxtBx.type = 'text';
+txtBxHolder.appendChild(newTxtBx);
+}
+
+function removeTxtBx(){
+var allTxtBxs = document.getElementById('txtBoxHolder').getElementsByTagName('input');
+if(allTxtBxs.length == 0){
+alert('there are no text boxes to remove');
+}
+else{
+document.getElementById('txtBoxHolder').removeChild(allTxtBxs[allTxtBxs.length-1]);
+}
+
+}
+
+</script>
+
+	
+    
+	<meta name="csrf_token" content="ODUxZDI2Y2ZjMDY0NTM3ZWI2ZTA5OWFiZjgyOWY5ZmJjYzNmNjM4Mw==" />
+</head>
+<body>
+<div id="container">
+        
+    <ul id="nav">
+        <li class="inactive"><a href="/ac/">Dashboard</a><ul>
+
+</ul>
+
+
+
+
+
+</li>
+    </ul>
+    <ul id="sub_nav">
+        <li><a class="Ticket" href="tickets.php" title="Open Tickets" >Open (0)</a></li><li><a class="closedTickets" href="tickets.php?status=closed" title="Closed Tickets" >Closed Tickets (0)</a></li><li><a class="newTicket" href="tickets.php?a=open" title="" >New Ticket</a></li>    </ul>
+    <div id="content">
+     <h1> Ticket {{threads.ticket_id}}</a></h2>    
+
+<table class="ticket_info" cellspacing="0" cellpadding="0" width="940" border="0">
+    <tr>
+        <td width="50">
+            <table border="0" cellspacing="" cellpadding="4" width="100%">
+                  
+                    
+                <tr>
+                    <th width="100">Status:</th>
+                    <td {% if forloop.last %}class="last"{% endif %}>{{ threads.status}}</td>
+                </tr>
+                <tr>
+                    <th>Priority:</th>
+                    <td {% if forloop.last %}class="last"{% endif %}>{{ threads.topic_priority}}</td>
+                </tr>
+                <tr>
+                    <th>Department:</th>
+                    <td>Aakash Tech Support</td>
+                </tr>
+                <tr>
+                    <th>Create Date:</th>
+                    <td {% if forloop.last %}class="last"{% endif %}>{{threads.created_date_time}}</td>
+                </tr>
+            </table>
+        </td>
+        <td width="50%">
+            <table border="0" cellspacing="" cellpadding="4" width="100%">
+               
+                <tr>
+                    <th>Email:</th>
+                     <td {% if forloop.last %}class="last"{% endif %}>{{ threads.user_id}}</td>
+                </tr>
+               
+            </table>
+        </td>
+    </tr>
+</table>
+<br>
+<table class="ticket_info" cellspacing="0" cellpadding="0" width="940" border="0">
+    <tr>
+        <td width="50%">
+            <table cellspacing="0" cellpadding="4" width="100%" border="0">
+                                <tr>
+                    <th width="100">Closed By:</th>
+                    <td>
+                        AakashTech Support                    </td>
+                </tr>
+                              
+                                <tr>
+                    <th>Close Date:</th>
+                    <td>06/06/2014 1:01 pm</td>
+                </tr>
+                            </table>
+        </td>
+        <td width="50%">
+            <table cellspacing="0" cellpadding="4" width="100%" border="0">
+                <tr>
+                    <th width="100">Help Topic:</th>
+                    <td {% if forloop.last %}class="last"{% endif %}>{{ threads.topic_id}}</td>
+                </tr>
+                <tr>
+                    <th nowrap>Last Message:</th>
+                <td {% if forloop.last %}class="last"{% endif %}>{{ threads.reopened_date}}</td>
+                </tr>
+                <tr>
+                    <th nowrap>Last Response:</th>
+                    <td>06/06/2014 1:01 pm</td>
+                </tr>
+                 
+            </table>
+        </td>
+    </tr>
+</table>
+<div class="clear"></div>
+<h2 style="padding:10px 0 5px 0; font-size:11pt;">{{threads.topic_id}}</h2>
+<ul id="threads">
+    <li><a class="active" id="toggle_ticket_thread" href="#">Ticket Thread {{count }} </a></li>
+    </ul>
+<div id="ticket_thread">
+            <table class="message" cellspacing="0" cellpadding="1" width="940" border="0">
+            <tr>
+                <th width="200">06/06/2014 12:54 pm</th>
+                <th width="440"><span></span></th>
+                <th width="300" class="tmeta"></th>
+            </tr>
+             <td {% if forloop.last %}class="last"{% endif %}>{{ threads.message}}</td>
+                    </table>
+                <table class="response" cellspacing="0" cellpadding="1" width="940" border="0">
+            <tr>
+               
+                <th width="440"><span></span></th>
+                <th width="300" class="tmeta">AakashTech Support</th>
+            </tr
+	    {% for responses in response %}
+	    <tr>
+		 <th width="200">{{responses.created}}</th>
+	    </tr>
+            <tr><td colspan=3>{{responses.reply}}</tr>
+	    {%  endfor %}
+                    </table>
+        </div>
+<div class="clear" style="padding-bottom:10px;"></div>
+
+<div id="response_options">
+    <ul>
+                <li><a id="reply_tab" href="#reply">Post Reply</a></li>
+                
+            </ul>
+    
+        <form id="reply" action="/ac/reply/{{threads.pk}}/" name="reply" method="POST">{% csrf_token %}
+        <input type="hidden" name="id" value="{{threads.ticket_id}}">
+        <input type="hidden" name="a" value="reply">
+        <span class="error"></span>
+        <table border="0" cellspacing="0" cellpadding="3">
+            <tr>
+                <td width="160">
+                    <label><strong>TO:</strong></label>
+                </td>
+                <td width="765">
+                <label id="uder email">{{threads.user_id}}</label>
+		
+                </td>
+		<
+            </tr>
+                        <tr>
+                <td width="160">
+                    <label><strong>Response:</strong></label>
+                </td>
+                <td width="765">
+                                    
+                    
+                        
+                        <br>
+                                        <textarea name="response" id="response" cols="50" rows="9" wrap="soft"></textarea>
+                </td>
+            </tr>
+                        <tr>
+                <td width="160">
+                    <label for="attachment">Attachments:</label>
+                </td>
+                <td width="765" id="reply_form_attachments" class="attachments">
+                    <div class="canned_attachments">
+                    </div>
+                    <div class="uploads">
+                    </div>
+                    <div class="file_input">
+                        <input type="file" class="multifile" name="attachments[]" size="30" value="" />
+                    </div>
+                </td>
+            </tr>
+                 
+               
+            
+                        <tr>
+                <td width="160">
+                    <label><strong>Ticket Status:</strong></label>
+                </td>
+                <td width="765">
+                                            <label><input type="checkbox" name="reply_ticket_status" id="reply_ticket_status" value="Open"
+                            > Reopen on Reply</label>
+                                   </td>
+            </tr>
+                        </div>
+        </table>
+        <p  style="padding-left:165px;">
+            <input class="btn_sm" type="submit" value="Post Reply">
+            <input class="btn_sm" type="reset" value="Reset">
+        </p>
+    </form>
+      
+    </div>
+<div style="display:none;" class="dialog" id="print-options">
+    <h3>Ticket Print Options</h3>
+    <a class="close" href="">&times;</a>
+    <hr/>
+   
+    <div class="clear"></div>
+</div>
+<div style="display:none;" class="dialog" id="ticket-status">
+    <h3>Reopen Ticket #274</h3>
+    <a class="close" href="">&times;</a>
+    <hr/>
+    Are you sure you want to <b>REOPEN</b> this ticket?   
+    <div class="clear"></div>
+</div>
+<div style="display:none;" class="dialog" id="confirm-action">
+    <h3>Please Confirm</h3>
+    <a class="close" href="">&times;</a>
+    <hr/>
+    <p class="confirm-action" style="display:none;" id="claim-confirm">
+        Are you sure want to <b>claim</b> (self assign) this ticket?
+    </p>
+    <p class="confirm-action" style="display:none;" id="answered-confirm">
+        Are you sure want to flag the ticket as <b>answered</b>?
+    </p>    
+    <p class="confirm-action" style="display:none;" id="unanswered-confirm">
+        Are you sure want to flag the ticket as <b>unanswered</b>?
+    </p>
+    <p class="confirm-action" style="display:none;" id="overdue-confirm">
+        Are you sure want to flag the ticket as <font color="red"><b>overdue</b></font>?
+    </p>
+    <p class="confirm-action" style="display:none;" id="banemail-confirm">
+        Are you sure want to <b>ban</b> javeds@iitb.ac.in? <br><br>
+        New tickets from the email address will be auto-rejected.
+    </p>
+    <p class="confirm-action" style="display:none;" id="unbanemail-confirm">
+        Are you sure want to <b>remove</b> javeds@iitb.ac.in from ban list?
+    </p>
+    <p class="confirm-action" style="display:none;" id="release-confirm">
+        Are you sure want to <b>unassign</b> ticket from <b>AakashTech Support</b>?
+    </p>
+    <p class="confirm-action" style="display:none;" id="delete-confirm">
+        <font color="red"><strong>Are you sure you want to DELETE this ticket?</strong></font>
+        <br><br>Deleted tickets CANNOT be recovered, including any associated attachments.
+    </p>
+    <div>Please confirm to continue.</div>
+  
+    <div class="clear"></div>
+</div>
+<script type="text/javascript" src="js/ticket.js"></script>
+    </div>
+   
+    <div>
+        <!-- Do not remove <img src="autocron.php" alt="" width="1" height="1" border="0" /> or your auto cron will cease to function -->
+        <img src="autocron.php" alt="" width="1" height="1" border="0" />
+        <!-- Do not remove <img src="autocron.php" alt="" width="1" height="1" border="0" /> or your auto cron will cease to function -->
+    </div>
+</div>
+<div id="overlay"></div>
+<div id="loading">
+    <h4>Please Wait!</h4>
+    <p>Please wait... it will take a second!</p>
+</div>
+</body>
+</html>

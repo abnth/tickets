@@ -1,0 +1,54 @@
+
+
+{% block sidebar %} <style type="text/css"> </style> {% endblock %}
+
+{% block content %}
+    <style type="text/css">
+        .main { margin-left: 25px; margin-top: 30px; }
+        .title { font-size: 1.4em; margin-top: 10px; border-bottom: 0px solid #ccc; padding-left: 4px; }
+        .last { border: 0px; }
+        .title a { text-decoration: none; }
+        .button { background: #999; color: white; padding: 4px; text-decoration: none; }
+
+        td { border-bottom: 1px solid #ccc; }
+        #list { border: 1px solid #ccc; width: 700px; }
+    </style>
+
+    <div class="main">
+
+        <div id="list">
+        <table border="0" cellpadding="5" width="200%">
+            <tr>
+                
+                <td>Ticket</td>
+                <td>Date</td>
+                <td>Subject</td>
+                <td>From</td>
+                <td>Priority</td>
+                
+                
+            </tr>
+
+            <!-- Ticket -->
+            if(request.method=='POST' && Search!="")
+            
+            {% for ticket in tickets %}
+            <tr>
+                <td {% if forloop.last %}class="last"{% endif %}>
+              <div class="title"><a href="/ac/display/{{ticket.pk}}">{{ ticket.ticket_id }}</a>
+                    </div></td>
+                <td {% if forloop.last %}class="last"{% endif %}>{{ ticket.created_date_time}}</td>
+                <td {% if forloop.last %}class="last"{% endif %}>
+                    {{ ticket.topic_id|linebreaksbr }}</td>
+                <td {% if forloop.last %}class="last"{% endif %}>
+                     {{ ticket.user_id|linebreaksbr }}</td>
+                    
+                </td>
+            </tr>
+
+            {% endfor %}
+        </div>
+
+    </div>
+
+{% endblock %}
