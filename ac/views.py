@@ -89,31 +89,37 @@ def main(request):
     tickets = Ticket.objects.all()
     return render_to_response("ac/d.html",dict(tickets=tickets), RequestContext(request))
 
-def display(request, id):      
+def display(request, id):     
      """Displaying the details of the corresponding tickets"""
      threads= Ticket.objects.get(pk=id)
      response = Threads.objects.filter(ticketreply=id)
      count    =  Threads.objects.filter(ticketreply=id).count()
+     count_open = Ticket.objects.filter(status=0).count()
+     count_close= Ticket.objects.filter(status=1).count() 
 
-    
+   
      if response.exists():
       context_dict = {
         'threads': threads,
         'response': response,
         'count'   : count,
+        'count_open':count_open,
+        'count_close':count_close,
       }
      else:
         context_dict={
-            'threads':threads
+            'threads':threads,
+            'count_open':count_open,
+            'count_close':count_close,
         }
-     
+    
      return render_to_response("ac/second.html", context_dict ,RequestContext(request))
     
 def search(request):
  if request.method == "POST":
    Search= request.POST.get('search')
    """Searching for ticket-id"""
-   tickets=Ticket.objects.filter(Q(ticket_id__icontains=Search) | Q(user_id__icontains=Search) | Q(created_date_time__icontains=Search))
+   tickets=Ticket.objects.filter(Q(ticket_id__icontains=Search) | Q(user_id__icontains=Search))
    if tickets.exists():
        #importticket=Ticket.objects.get(pk=Search)
        return render_to_response("ac/search.html",dict(tickets=tickets),RequestContext(request))
@@ -222,30 +228,48 @@ def reply(request, id):
   if request.method == 'POST':
     Reply= request.POST.get('response')
     ticket=Ticket.objects.get(pk=id)
-    
+   
     response = Threads.objects.create(ticketreply=ticket, reply=Reply,count=1)
     response.save()
+   
+    check=request.POST.get('reply_ticket_status')
+    print check
+    if check== 'Open':
+        s=ticket.objects.get(pk=id)
+        s.status=0
+        s.save()
+   
  
     threads = Ticket.objects.get(pk=id)
     response = Threads.objects.filter(ticketreply=id)
     count    =  Threads.objects.filter(ticketreply=id).count()
-    
-
-    
+    count_open = Ticket.objects.filter(status=0).count()
+    count_close= Ticket.objects.filter(status=1).count()
    
+
+   
+  
     context_dict = {
         'threads': threads,
         'response': response,
         'count'   :  count,
+        'count_open':count_open,
+        'count_close':count_close,
     }
-    
-    
-    
-    
+   
+   
+   
+   
     return render_to_response("ac/second.html",context_dict, RequestContext(request))
-  
 
-    
+def open(request):
+     tickets = Ticket.objects.filter(status=0)
+     return render_to_response("ac/d.html",dict(tickets=tickets), RequestContext(request))
+
+
+def close(request):
+     tickets = Ticket.objects.filter(status=1)
+     return render_to_response("ac/d.html",dict(tickets=tickets), RequestContext(request))
     
 
                    

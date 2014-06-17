@@ -63,7 +63,7 @@ document.getElementById('txtBoxHolder').removeChild(allTxtBxs[allTxtBxs.length-1
 </li>
     </ul>
     <ul id="sub_nav">
-        <li><a class="Ticket" href="tickets.php" title="Open Tickets" >Open (0)</a></li><li><a class="closedTickets" href="tickets.php?status=closed" title="Closed Tickets" >Closed Tickets (0)</a></li><li><a class="newTicket" href="tickets.php?a=open" title="" >New Ticket</a></li>    </ul>
+        <li><a class="Ticket" href="/ac/open" title="Open Tickets" >Open ({{count_open}})</a></li><li><a class="closedTickets" href="/ac/close" title="Closed Tickets" >Closed Tickets ({{count_close}})</a></li><li><a class="newTicket" href="tickets.php?a=open" title="" >New Ticket</a></li>    </ul>
     <div id="content">
      <h1> Ticket {{threads.ticket_id}}</a></h2>    
 

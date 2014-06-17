@@ -11,7 +11,7 @@ urlpatterns = patterns( '',
      url(r'^reply/(\d+)/$',"ac.views.reply"),
      url(r'^submit_ticket/', 'ac.views.submit_ticket', name='submit ticket'),
      url(r'^ticket_stats/', 'ac.views.ticket_status_graph', name='ticket stats'),
-     url(r'^ticket_traffic/', 'ac.views.ticket_traffic_graph', name='ticket traffic'),
-     
-
+     url(r'^ticket_traffic/', 'ac.views.ticket_traffic_graph', name='ticket traffic'),	
+     url(r'^open/', 'ac.views.open', name='open'),	
+     url(r'^close/', 'ac.views.close', name='close'),	
 )
